@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import it.mwt.hirelance.business.PathPropertyLoader;
 import it.mwt.hirelance.business.PortfolioServiceRemote;
 import it.mwt.hirelance.business.exceptions.BusinessException;
+import it.mwt.hirelance.business.impl.common.FilePathLoader;
 import it.mwt.hirelance.business.impl.disk.DISKImageService;
 import it.mwt.hirelance.business.model.FreelanceProfile;
 import it.mwt.hirelance.business.model.PortfolioItem;
@@ -35,7 +35,7 @@ public class JPAPortfolioService implements PortfolioServiceRemote {
 	private EntityManager em;
 	
 	@EJB
-	private PathPropertyLoader pathProperty;
+	private FilePathLoader pathProperty;
 	
 	@EJB
 	private DISKImageService uploadService;

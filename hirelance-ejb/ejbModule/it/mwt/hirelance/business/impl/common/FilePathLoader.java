@@ -1,4 +1,4 @@
-package it.mwt.hirelance.business;
+package it.mwt.hirelance.business.impl.common;
 
 //import javax.annotation.Resource;
 import javax.ejb.LocalBean;
@@ -9,7 +9,7 @@ import javax.ejb.Singleton;
  */
 @Singleton
 @LocalBean
-public class PathPropertyLoader {
+public class FilePathLoader {
 
 	//@Resource(name = "basePath")
 	private String basePath = "/home/marco/WORKSPACE ECLIPSE/HIRELANCE WORKSPACE/files_hirelance/";
@@ -32,7 +32,7 @@ public class PathPropertyLoader {
     /**
      * Default constructor. 
      */
-    public PathPropertyLoader() {
+    public FilePathLoader() {
         
     }
 

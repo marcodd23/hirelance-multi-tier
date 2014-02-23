@@ -7,10 +7,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import it.mwt.hirelance.business.exceptions.BusinessException;
+import it.mwt.hirelance.business.impl.common.FilePathLoader;
 import it.mwt.hirelance.business.model.UploadedFile;
 import it.mwt.hirelance.business.utils.FileUploadUtility;
 import it.mwt.hirelance.business.ImageServiceRemote;
-import it.mwt.hirelance.business.PathPropertyLoader;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -33,7 +33,7 @@ public class DISKImageService implements ImageServiceRemote {
 	private EntityManager em;
 	
 	@EJB
-	private PathPropertyLoader pathProperty;
+	private FilePathLoader pathProperty;
 	
     /**
      * Default constructor. 

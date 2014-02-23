@@ -3,7 +3,9 @@ package it.mwt.hirelance.business.impl.jpa;
 import java.util.Date;
 import java.util.List;
 
-import it.mwt.hirelance.business.PathPropertyLoader;
+
+
+//import it.mwt.hirelance.business.FilePathLoader;
 import it.mwt.hirelance.business.UserServiceRemote;
 import it.mwt.hirelance.business.dto.FilterDataRequest;
 import it.mwt.hirelance.business.dto.FilterDataResponse;
@@ -11,6 +13,7 @@ import it.mwt.hirelance.business.dto.RequestGrid;
 import it.mwt.hirelance.business.dto.ResponseGrid;
 import it.mwt.hirelance.business.exceptions.BusinessException;
 import it.mwt.hirelance.business.exceptions.BusinessException.ExceptionCause;
+import it.mwt.hirelance.business.impl.common.FilePathLoader;
 import it.mwt.hirelance.business.impl.disk.DISKImageService;
 import it.mwt.hirelance.business.model.ClientProfile;
 import it.mwt.hirelance.business.model.FeedBack;
@@ -47,7 +50,7 @@ public class JPAUserService implements UserServiceRemote{
 	private DISKImageService imageService;
 	
 	@EJB
-	private PathPropertyLoader pathProperty;
+	private FilePathLoader pathProperty;
 	
     /**
      * Default constructor. 
