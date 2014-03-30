@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="EclipseLink 2.5.1" systemlibrary="false">
+        <archive path="/home/marco/WORKSPACE ECLIPSE/JAR PER PROGETTO TP/eclipselink-plugins-2.5.1.v20130918-f2b9fc5/javax.persistence_2.1.0.v201304241213.jar"/>
+        <archive path="/home/marco/WORKSPACE ECLIPSE/JAR PER PROGETTO TP/eclipselink-plugins-2.5.1.v20130918-f2b9fc5/org.eclipse.persistence.antlr_3.2.0.v201302191141.jar"/>
+        <archive path="/home/marco/WORKSPACE ECLIPSE/JAR PER PROGETTO TP/eclipselink-plugins-2.5.1.v20130918-f2b9fc5/org.eclipse.persistence.asm_3.3.1.v201302191223.jar"/>
+        <archive path="/home/marco/WORKSPACE ECLIPSE/JAR PER PROGETTO TP/eclipselink-plugins-2.5.1.v20130918-f2b9fc5/org.eclipse.persistence.core_2.5.1.v20130918-f2b9fc5.jar"/>
+        <archive path="/home/marco/WORKSPACE ECLIPSE/JAR PER PROGETTO TP/eclipselink-plugins-2.5.1.v20130918-f2b9fc5/org.eclipse.persistence.jpa.modelgen_2.5.1.v20130918-f2b9fc5.jar"/>
+        <archive path="/home/marco/WORKSPACE ECLIPSE/JAR PER PROGETTO TP/eclipselink-plugins-2.5.1.v20130918-f2b9fc5/org.eclipse.persistence.jpa_2.5.1.v20130918-f2b9fc5.jar"/>
+        <archive path="/home/marco/WORKSPACE ECLIPSE/JAR PER PROGETTO TP/eclipselink-plugins-2.5.1.v20130918-f2b9fc5/org.eclipse.persistence.moxy_2.5.1.v20130918-f2b9fc5.jar"/>
+        <archive path="/home/marco/WORKSPACE ECLIPSE/JAR PER PROGETTO TP/eclipselink-plugins-2.5.1.v20130918-f2b9fc5/org.eclipse.persistence.oracle_2.5.1.v20130618-75cdba2.jar"/>
+        <archive path="/home/marco/WORKSPACE ECLIPSE/JAR PER PROGETTO TP/eclipselink-plugins-2.5.1.v20130918-f2b9fc5/javax.mail_1.4.0.v201005080615.jar"/>
+        <archive path="/home/marco/WORKSPACE ECLIPSE/JAR PER PROGETTO TP/eclipselink-plugins-2.5.1.v20130918-f2b9fc5/javax.xml.bind_2.2.0.v201105210648.jar"/>
+    </library>
+</eclipse-userlibraries>

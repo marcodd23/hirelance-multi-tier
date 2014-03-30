@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="Tomcat_to_Glassfish" systemlibrary="true">
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/auto-depends.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/bean-validator.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/common-util.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/config.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/config-api.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/config-types.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/deployment-common.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/dol.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/ejb.security.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/ejb-container.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/glassfish-api.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/glassfish-corba-asm.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/glassfish-corba-codegen.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/glassfish-corba-csiv2-idl.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/glassfish-corba-internal-api.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/glassfish-corba-newtimer.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/glassfish-corba-omgapi.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/glassfish-corba-orb.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/glassfish-corba-orbgeneric.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/glassfish-naming.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/gmbal.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/hk2-core.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/internal-api.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/javax.ejb.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/kernel.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/management-api.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/orb-connector.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/orb-enabler.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/orb-iiop.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/security.jar"/>
+        <archive path="/opt/glassfish/glassfish3/glassfish/modules/ssl-impl.jar"/>
+    </library>
+</eclipse-userlibraries>
