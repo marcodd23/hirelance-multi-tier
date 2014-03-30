@@ -8,7 +8,7 @@
 <script type="text/javascript" >
 var contextPath='${pageContext.request.contextPath}';
 var projectID='${project.projectID}';
-var subCategorySelectedID = '${project.projectSubCategory.subID}';
+var subCategorySelectedID = '${project.projectSubCategory.catID}';
 var mainCategoryPreSelected = '${mainCategoryPreSelected}';
 </script>
 
@@ -74,8 +74,8 @@ var mainCategoryPreSelected = '${mainCategoryPreSelected}';
 	        </c:if> 
 			<select name="projectMainCategory" id="projectMainCategory">
 			    <c:choose>
-			       <c:when test="${not empty project.projectSubCategory and project.projectSubCategory.subID!=0 }">
-			         <option value='${project.projectSubCategory.parentCategory.mainID}' selected="selected">${project.projectSubCategory.parentCategory.name}</option>
+			       <c:when test="${not empty project.projectSubCategory and project.projectSubCategory.catID!=0 }">
+			         <option value='${project.projectSubCategory.parentCategory.catID}' selected="selected">${project.projectSubCategory.parentCategory.name}</option>
 			       </c:when>
 			       <c:otherwise>
 			         <option value="0" selected="selected">-- Select a category --</option>
@@ -83,16 +83,16 @@ var mainCategoryPreSelected = '${mainCategoryPreSelected}';
 			       </c:otherwise>
 			    </c:choose>
     			<c:forEach items="${categories}" var="category">
-    			  <option value="${category.mainID}">${category.name}</option>
+    			  <option value="${category.catID}">${category.name}</option>
     			</c:forEach>
     		</select>
     		<br>
-    		<form:errors path="projectSubCategory.subID" cssClass="errors_list"/>
-            <form:select path="projectSubCategory.subID" id="projectSubCategory">
+    		<form:errors path="projectSubCategory.catID" cssClass="errors_list"/>
+            <form:select path="projectSubCategory.catID" id="projectSubCategory">
                 <option value="0">-- No category selected --</option>
-                <%-- <option value="">-- <spring:message code="project.form.subCategory"/> --</option> --%>
+                <%-- <option value="">-- <spring:message code="project.form.catCategory"/> --</option> --%>
                 <!-- <option selected="selected">-- Select a subcategory --</option> -->
-    		    <form:options  itemLabel="name" itemValue="subID"/>
+    		    <form:options  itemLabel="name" itemValue="catID"/>
             </form:select> 
             <br>
             <br>

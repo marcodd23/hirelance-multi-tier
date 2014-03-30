@@ -1,6 +1,6 @@
 package it.mwt.hirelance.presentation.validator;
 
-import it.mwt.hirelance.business.model.SubCategory;
+import it.mwt.hirelance.business.model.Category;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -12,12 +12,12 @@ public class SubValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> klass) {
-		return SubCategory.class.isAssignableFrom(klass);
+		return Category.class.isAssignableFrom(klass);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		SubCategory subCategory = (SubCategory)target;
+		Category subCategory = (Category)target;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "errors.required");
 	}
 

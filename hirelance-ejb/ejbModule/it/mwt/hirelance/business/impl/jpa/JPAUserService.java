@@ -211,7 +211,7 @@ public class JPAUserService implements UserServiceRemote{
 		
 		String  queryCategory = "";
 		if(!"".equals(filterDataRequest.getCategory())){
-			queryCategory = "AND u.freelanceProfile.category.mainID = '"+filterDataRequest.getCategory()+"' ";
+			queryCategory = "AND u.freelanceProfile.category.catID = '"+filterDataRequest.getCategory()+"' ";
 		}
 		
 		String querySkill= "";

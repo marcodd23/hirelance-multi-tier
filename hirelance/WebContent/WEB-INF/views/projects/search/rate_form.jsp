@@ -13,7 +13,7 @@
 				<form:hidden path="type" id="type"/>
 				<br><label for="comment"><spring:message code="project.comment"/> (max 60 <spring:message code="common.chars"/>)</label><br>
 				<form:input path="remark" id="comment" cssClass="text ui-widget-content ui-corner-all"/>
-				<form:hidden path="jobEvaluated.refProject.projectID" id="projectID"/>
+				<form:hidden path="jobEvaluated.refProject.projectID" id="projectIDevaluated"/>
 			</fieldset>
 		</form:form>
 	</div>

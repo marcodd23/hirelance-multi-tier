@@ -8,16 +8,16 @@ $("#sub").addClass("current");
 			"bServerSide": true,
 			"sAjaxDataProp": "rows",
 			"aoColumns":[
-		                {"mData":"subID"},
+		                {"mData":"catID"},
 		                {"mData":"name"},
 		                {"mData":"parentCategory.name", "sDefaultContent": ""},
-		                {"sName": "subID",
+		                {"sName": "catID",
 		                    "bSearchable": false,
 		                    "bSortable": false,
 		                    "sDefaultContent": "",
 		                    "fnRender": function (oObj) {
-		                       return "<a href='${pageContext.request.contextPath}/categories/sub/update?id=" + oObj.aData['subID'] + "'><i title='edit' class='icon-pencil'></i></a>" + " | "+ 
-		                       		  "<a href='${pageContext.request.contextPath}/categories/sub/delete?id=" + oObj.aData['subID'] + "'><i title='trash' class='icon-trash'></i></a>";
+		                       return "<a href='${pageContext.request.contextPath}/categories/sub/update?id=" + oObj.aData['catID'] + "'><i title='edit' class='icon-pencil'></i></a>" + " | "+ 
+		                       		  "<a href='${pageContext.request.contextPath}/categories/sub/delete?id=" + oObj.aData['catID'] + "'><i title='trash' class='icon-trash'></i></a>";
 		                    	
 		                     }
 		                  }

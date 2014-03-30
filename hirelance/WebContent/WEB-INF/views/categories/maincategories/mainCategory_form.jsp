@@ -43,7 +43,7 @@ $("#main").addClass("current");
 	<div class="container">
 		<div class="sixteen columns add-top add-bottom">
 			<form:form modelAttribute="mainCategory" action="${pageContext.request.contextPath}${requestScope.action}" method="POST" cssClass="form-user">
-				<form:hidden path="mainID"/>
+				<form:hidden path="catID"/>
 				<form:errors path="name" cssClass="errors_list"/>
 				<form:input path="name" id="name" placeholder="Name"/>
 				<br>

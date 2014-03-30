@@ -5,7 +5,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.*;
+
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 /**
@@ -23,21 +25,14 @@ public class Proposal implements Serializable {
 	private int proposalID;
 	private String description;
 	private Date proposalDate;
-	//private BigDecimal hrsRateBid;
-	//private int hrsWeekBid;
 	private BigDecimal payBid;
 	private Integer deliveryTime;
 	private Project refProject;
 	private FreelanceProfile aspirantFreelance;
-	//private Collection<Message> messages = new HashSet<Message>();
-	//private Boolean hired; //assunto/non assunto
-	//private String status;
 	private Collection<FeedBack> evaluations = new ArrayList<FeedBack>();
 	private ProposalStatus status;
 	private int newMessageClientCounter;
 	private int newMessageFreelanceCounter;
-	//private boolean newClientMessage;
-	//private boolean newFreelanceMessage;
     private Date jobStartDate;
     private Date jobFinishedDate;
 
@@ -110,7 +105,7 @@ public class Proposal implements Serializable {
 		this.deliveryTime = deliveryTime;
 	}
 
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne
 	@JoinColumn(name = "PROJECT_FK", referencedColumnName = "PROJECT_ID")
 	public Project getRefProject() {
 		return refProject;
@@ -120,7 +115,7 @@ public class Proposal implements Serializable {
 		this.refProject = refProject;
 	}
 
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "FREELANCE_FK", referencedColumnName = "FREELANCE_ID")
 	public FreelanceProfile getAspirantFreelance() {
 		return aspirantFreelance;
@@ -128,23 +123,9 @@ public class Proposal implements Serializable {
 
 	public void setAspirantFreelance(FreelanceProfile aspirantFreelance) {
 		this.aspirantFreelance = aspirantFreelance;
-	}
-
+	}	
 	
-	
-/*	@JsonIgnore
-	@OneToMany(mappedBy = "messageProposal")
-	public Collection<Message> getMessages() {
-		return messages;
-	}
-
-	public void setMessages(Collection<Message> messages) {
-		this.messages = messages;
-	}*/
-	
-	
-	
-	@OneToMany(mappedBy = "jobEvaluated")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy = "jobEvaluated")
 	public Collection<FeedBack> getEvaluations() {
 		return evaluations;
 	}
@@ -161,8 +142,6 @@ public class Proposal implements Serializable {
 	public void setStatus(ProposalStatus status) {
 		this.status = status;
 	}
-	
-
 	
 	public int getNewMessageClientCounter() {
 		return newMessageClientCounter;

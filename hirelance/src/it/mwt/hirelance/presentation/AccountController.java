@@ -2,6 +2,8 @@ package it.mwt.hirelance.presentation;
 
 
 import it.mwt.hirelance.business.exceptions.BusinessException;
+import it.mwt.hirelance.business.model.ClientProfile;
+import it.mwt.hirelance.business.model.FreelanceProfile;
 import it.mwt.hirelance.business.model.User;
 import it.mwt.hirelance.business.UserServiceRemote;
 import it.mwt.hirelance.common.FactoryEjb;
@@ -28,6 +30,8 @@ public class AccountController {
 		User u = service.findUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		model.addAttribute("fp", u.getFreelanceProfile());
 		model.addAttribute("cp", u.getClientProfile());
+		ClientProfile cp = u.getClientProfile();
+		FreelanceProfile fp = u.getFreelanceProfile();
 		return "account.views";
 	}
 	

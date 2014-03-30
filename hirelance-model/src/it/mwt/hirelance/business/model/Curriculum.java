@@ -7,7 +7,6 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 
@@ -70,7 +69,7 @@ public class Curriculum implements Serializable {
 		this.lastUpdate = lastUpdate;
 	}
 
-	@OneToMany(orphanRemoval = true)
+	@OneToMany(fetch=FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "CURRICULUM_FK", referencedColumnName = "CURRICULUM_ID")
 	public Collection<Education> getEducations() {
 		return educations;
@@ -80,7 +79,7 @@ public class Curriculum implements Serializable {
 		this.educations = educations;
 	}
 
-	@OneToMany(orphanRemoval = true)
+	@OneToMany(fetch=FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "CURRICULUM_FK", referencedColumnName = "CURRICULUM_ID")
 	public Collection<Employment> getEmployments() {
 		return employments;
@@ -90,7 +89,7 @@ public class Curriculum implements Serializable {
 		this.employments = employments;
 	}
 
-	@OneToMany(orphanRemoval = true)
+	@OneToMany(fetch=FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "CURRICULUM_FK", referencedColumnName = "CURRICULUM_ID")
 	public Collection<Language> getLanguages() {
 		return languages;

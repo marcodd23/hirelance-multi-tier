@@ -27,6 +27,7 @@ public class UploadedFile implements Serializable{
 	private byte[] arrayByte;
 	
 	
+	
 	public UploadedFile() {
 		super();
 	}

@@ -18,7 +18,7 @@ import javax.ejb.Remote;
 @Remote
 public interface ProjectServiceRemote {
 
-	void createProject(Project pr, ClientProfile cp, int daysToPost) throws BusinessException;
+	Project createProject(Project pr, ClientProfile cp, int daysToPost) throws BusinessException;
 	Project findProjectByID(int projectID) throws BusinessException;
 	void projectUpdate(Project pr, int daysToPost, ClientProfile cp) throws BusinessException;
 	void checkProjectExpired() throws BusinessException;

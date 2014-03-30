@@ -20,22 +20,22 @@ import static javax.persistence.FetchType.EAGER;
  *
  */
 @Entity
+
 @Table(name = "FREELANCES_PROFILES")
 public class FreelanceProfile implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4560721760721290985L;
+	private static final long serialVersionUID = -8350353085448010759L;
 	private int freelanceID;
 	private String freelanceName;
 	private User user;
 	private UploadedFile image;
-	private MainCategory category;
+	private Category category;
 	private Curriculum curriculum;
 	private float rating;
 	private int totalProjects;
-	private Collection<WorkRoom> workRooms = new HashSet<WorkRoom>();
 	private Collection<ClientProfile> preferredClients = new HashSet<ClientProfile>();
 	private Collection<Project> projectWatchList = new HashSet<Project>();
 	private Collection<PortfolioItem> portfolio = new ArrayList<PortfolioItem>();
@@ -70,7 +70,7 @@ public class FreelanceProfile implements Serializable {
 	}
 
 	@JsonIgnore
-	@OneToOne(mappedBy = "freelanceProfile")
+	@OneToOne(mappedBy = "freelanceProfile", fetch= FetchType.EAGER)
 	public User getUser() {
 		return user;
 	}
@@ -79,13 +79,13 @@ public class FreelanceProfile implements Serializable {
 		this.user = user;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "MAINCATEGORY_FK", referencedColumnName = "MAINCATEGORY_ID")
-	public MainCategory getCategory() {
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "MAINCATEGORY_FK", referencedColumnName = "CATEGORY_ID")
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(MainCategory category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
@@ -99,20 +99,10 @@ public class FreelanceProfile implements Serializable {
 		this.proposals = proposals;
 	}*/
 
-	
-	
-	@OneToMany(mappedBy = "workingFreelance")
-	@JoinTable(name = "FREELANCES_PROPOSALS")
-	public Collection<WorkRoom> getWorkRooms() {
-		return workRooms;
-	}
 
-	public void setWorkRooms(Collection<WorkRoom> workRoom) {
-		this.workRooms = workRoom;
-	}
-
-	@OneToMany(fetch = EAGER)
-	@JoinTable(name = "Preferred_Client", joinColumns = @JoinColumn(name = "FREELANCE_FK", referencedColumnName = "FREELANCE_ID"), inverseJoinColumns = @JoinColumn(name = "CLIENT_FK", referencedColumnName = "CLIENT_ID"))
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name = "Preferred_Profile", joinColumns = @JoinColumn(name = "FREELANCE_FK", referencedColumnName = "FREELANCE_ID"),
+	inverseJoinColumns = @JoinColumn(name = "CLIENT_FK", referencedColumnName = "CLIENT_ID"))
 	public Collection<ClientProfile> getPreferredClients() {
 		return preferredClients;
 	}
@@ -121,7 +111,7 @@ public class FreelanceProfile implements Serializable {
 		this.preferredClients = preferredClients;
 	}
 
-	@OneToMany(cascade = { REMOVE, PERSIST, MERGE, REFRESH }, fetch = EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "WatchList", joinColumns = @JoinColumn(name = "FREELANCE_FK", referencedColumnName = "FREELANCE_ID"), inverseJoinColumns = @JoinColumn(name = "PROJECT_FK", referencedColumnName = "PROJECT_ID"))
 	public Collection<Project> getProjectWatchList() {
 		return projectWatchList;
@@ -131,7 +121,7 @@ public class FreelanceProfile implements Serializable {
 		this.projectWatchList = projectWatchList;
 	}
 
-	@OneToOne(fetch = FetchType.EAGER, orphanRemoval = true, cascade={PERSIST,MERGE,REFRESH})
+	@OneToOne(fetch = FetchType.EAGER, orphanRemoval = true, cascade={PERSIST,MERGE})
 	@JoinColumn(name = "CURRICULUM_FK", referencedColumnName = "CURRICULUM_ID")
 	public Curriculum getCurriculum() {
 		return curriculum;
@@ -141,7 +131,7 @@ public class FreelanceProfile implements Serializable {
 		this.curriculum = curriculum;
 	}
 
-	@OneToMany(orphanRemoval = true)
+	@OneToMany(fetch=FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "FREELANCE_FK", referencedColumnName = "FREELANCE_ID")
 	public Collection<PortfolioItem> getPortfolio() {
 		return portfolio;
@@ -149,14 +139,6 @@ public class FreelanceProfile implements Serializable {
 
 	public void setPortfolio(Collection<PortfolioItem> portfolio) {
 		this.portfolio = portfolio;
-	}
-   
-/*	public void addProposal(Proposal proposal){
-		this.proposals.add(proposal);
-	} */
-	
-	public void addWorkRoom(WorkRoom workRoom){
-		this.workRooms.add(workRoom);
 	}
 	
 	public void addPreferredClient(ClientProfile preferredClient){

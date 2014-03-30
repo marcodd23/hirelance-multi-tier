@@ -3,10 +3,12 @@ package it.mwt.hirelance.presentation;
 import it.mwt.hirelance.business.dto.FilterDataRequest;
 import it.mwt.hirelance.business.dto.FilterDataResponse;
 import it.mwt.hirelance.business.exceptions.BusinessException;
+import it.mwt.hirelance.business.model.FeedBack;
 import it.mwt.hirelance.business.model.Message;
 import it.mwt.hirelance.business.model.Proposal;
 import it.mwt.hirelance.business.model.User;
 import it.mwt.hirelance.business.InboxServiceRemote;
+import it.mwt.hirelance.business.ProjectServiceRemote;
 import it.mwt.hirelance.business.WorkRoomServiceRemote;
 import it.mwt.hirelance.common.FactoryEjb;
 import it.mwt.hirelance.common.spring.security.UserDetailsImpl;
@@ -29,6 +31,8 @@ public class WorkroomController {
 	
 	//@Autowired
 	private WorkRoomServiceRemote wrService = factoryEjb.getWorkRoomServiceRemote();
+	
+	private ProjectServiceRemote pService = factoryEjb.getProjectServiceRemote();
 
 	//@Autowired
 	private InboxServiceRemote inboxService = factoryEjb.getInboxServiceRemote();
@@ -49,8 +53,10 @@ public class WorkroomController {
 		User userLogged = userDetail.getUser();
 		System.out.println("Sono l'utente "+userLogged.toString());
 		model.addAttribute("projectID", projectID);
+		model.addAttribute("project", pService.findProjectByID(projectID));
 		model.addAttribute("proposalID",wrService.findActiveWorkRoom(projectID, userLogged).getItems().get(0).getProposalID());
 		model.addAttribute("filterDataRequest", new FilterDataRequest());
+		model.addAttribute("feedback", new FeedBack());
 		return "workroom.views";
 
 	}

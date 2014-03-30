@@ -31,19 +31,6 @@ function addFeedback(){
 	//alert("esco dalla funzione");
 }
 
-function addFeedbackInWorkRoom(){
-	//alert("provo ad aggiungere");
-	var dataForm = $("#feedbackForm").serialize();
-	$.ajax({
-		url:contextPath+"/projects/addFeedback",
-		type:"POST",
-		data:dataForm,
-	}).done(function(){
-		location.href=contextPath + "/projects/my";
-		
-	});
-	//alert("esco dalla funzione");
-}
 
 
 $( "#dialog" ).dialog({ 
@@ -52,7 +39,7 @@ $( "#dialog" ).dialog({
 	//position: { my: "center top", at: "top top", of: window },
 	buttons: {
         Ok: function() {
-          $( this ).dialog( "close" );
+        	location.href=contextPath + "/projects/my_projects";
         }
       }
 });

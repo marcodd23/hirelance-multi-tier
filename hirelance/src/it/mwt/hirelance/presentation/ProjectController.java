@@ -13,7 +13,7 @@ import it.mwt.hirelance.business.dto.ResponseGrid;
 import it.mwt.hirelance.business.exceptions.BusinessException;
 import it.mwt.hirelance.business.model.ClientProfile;
 import it.mwt.hirelance.business.model.FeedBack;
-import it.mwt.hirelance.business.model.MainCategory;
+import it.mwt.hirelance.business.model.Category;
 import it.mwt.hirelance.business.model.Project;
 import it.mwt.hirelance.business.model.Project.ProjectStatus;
 import it.mwt.hirelance.business.model.Proposal;
@@ -60,7 +60,7 @@ public class ProjectController {
 	//private ProfileServiceRemote profilesService;
 	
 	//@Autowired
-	private UserServiceRemote uService;
+	private UserServiceRemote uService = factoryEjb.getUserServiceRemote();
 	
 	@Autowired
 	private ProjectValidator pValidator;
@@ -92,7 +92,7 @@ public class ProjectController {
 			return "projects.createform";
 		}
 		ClientProfile client = u.getClientProfile();
-		projectService.createProject(project, client, daysToPost);
+		project = projectService.createProject(project, client, daysToPost);
 		//Aggiungo all'utente in sessione
 		UserDetailsImpl a = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		a.getUser().setClientProfile(client);
@@ -212,7 +212,7 @@ public class ProjectController {
 	
 	@RequestMapping("/findAllProjectsPaginated")
 	@ResponseBody
-	public ResponseGrid<Project> findAllUsersPaginated(@ModelAttribute RequestGrid requestGrid) throws BusinessException{
+	public ResponseGrid<Project> findAllProjectsPaginated(@ModelAttribute RequestGrid requestGrid) throws BusinessException{
 		ResponseGrid<Project> result= projectService.findAllProjectPaginated(requestGrid);
 		return result;
 	}
@@ -253,7 +253,7 @@ public class ProjectController {
 
 	@ModelAttribute
 	public void findAllMainCategories(Model model) throws BusinessException{
-		List<MainCategory> mainCategories = cService.findAllMainCategories();
+		List<Category> mainCategories = cService.findAllMainCategories();
 		model.addAttribute("categories", mainCategories);
 		
 	}

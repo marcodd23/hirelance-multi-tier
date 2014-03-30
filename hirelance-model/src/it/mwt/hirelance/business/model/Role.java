@@ -8,6 +8,7 @@ import javax.persistence.*;
  *
  */
 @Entity
+
 @Table(name = "ROLES")
 public class Role implements Serializable {
 

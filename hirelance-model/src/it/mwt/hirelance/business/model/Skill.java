@@ -17,11 +17,11 @@ public class Skill implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4615141653071609786L;
+	private static final long serialVersionUID = -9128341100406469264L;
 	private int skillID;
 	private String name;
 	private String description;
-	private MainCategory mainCategory;
+	private Category mainCategory;
 
 	public Skill() {
 		super();
@@ -61,11 +61,11 @@ public class Skill implements Serializable {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="MAINCATEGORY_FK")
-	public MainCategory getMainCategory() {
+	public Category getMainCategory() {
 		return mainCategory;
 	}
 
-	public void setMainCategory(MainCategory mainCategory) {
+	public void setMainCategory(Category mainCategory) {
 		this.mainCategory = mainCategory;
 	}
    

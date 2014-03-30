@@ -5,6 +5,9 @@ import java.lang.String;
 import java.util.Date;
 
 import javax.persistence.*;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.REFRESH;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 /**
@@ -12,6 +15,7 @@ import static javax.persistence.TemporalType.TIMESTAMP;
  *
  */
 @Entity
+
 @Table(name = "USERS")
 public class User implements Serializable {
 
@@ -174,10 +178,8 @@ public class User implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-
 	
-	
-	@OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+	@OneToOne(fetch = FetchType.EAGER,cascade= {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
 	@JoinColumn(name = "FREELANCE_FK", referencedColumnName = "FREELANCE_ID")
 	public FreelanceProfile getFreelanceProfile() {
 		return freelanceProfile;
@@ -191,7 +193,7 @@ public class User implements Serializable {
 	}
 
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+	@OneToOne(fetch = FetchType.EAGER,cascade= {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
 	@JoinColumn(name = "CLIENT_FK", referencedColumnName = "CLIENT_ID")
 	public ClientProfile getClientProfile() {
 		return clientProfile;

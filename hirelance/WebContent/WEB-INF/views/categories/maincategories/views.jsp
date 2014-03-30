@@ -8,17 +8,17 @@ $("#main").addClass("current");
 			"bServerSide": true,
 			"sAjaxDataProp": "rows",
 			"aoColumns":[
-		                {"mData":"mainID"},
+		                {"mData":"catID"},
 		                {"mData":"name"},		                
-		                {"sName": "mainID",
+		                {"sName": "catID",
 		                    "bSearchable": false,
 		                    "bSortable": false,
 		                    "sDefaultContent": "",
 		                    "fnRender": function (oObj) {
-		                       return "<a href='${pageContext.request.contextPath}/categories/main/update?id=" + oObj.aData['mainID'] + "'><i title='edit' class='icon-pencil'></i></a>" + " | "+ 
-		                       		  "<a href='${pageContext.request.contextPath}/categories/main/delete?id=" + oObj.aData['mainID'] + "'><i title='trash' class='icon-trash'></i></a>" + " | "+
-		                       		  "<a href='${pageContext.request.contextPath}/categories/skill/views?main_id=" + oObj.aData['mainID'] + "'><i title='view skills' class='icon-eye'></i></a>" + " | "+
-		                       		  "<a href='${pageContext.request.contextPath}/categories/sub/views?main_id=" + oObj.aData['mainID'] + "'><i title='view subcategories' class='icon-flow-tree'></i></a>";
+		                       return "<a href='${pageContext.request.contextPath}/categories/main/update?id=" + oObj.aData['catID'] + "'><i title='edit' class='icon-pencil'></i></a>" + " | "+ 
+		                       		  "<a href='${pageContext.request.contextPath}/categories/main/delete?id=" + oObj.aData['catID'] + "'><i title='trash' class='icon-trash'></i></a>" + " | "+
+		                       		  "<a href='${pageContext.request.contextPath}/categories/skill/views?main_id=" + oObj.aData['catID'] + "'><i title='view skills' class='icon-eye'></i></a>" + " | "+
+		                       		  "<a href='${pageContext.request.contextPath}/categories/sub/views?main_id=" + oObj.aData['catID'] + "'><i title='view subcategories' class='icon-flow-tree'></i></a>";
 		                    	
 		                     }
 		                  }

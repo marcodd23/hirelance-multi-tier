@@ -9,10 +9,9 @@ import it.mwt.hirelance.business.dto.FilterDataResponse;
 import it.mwt.hirelance.business.dto.RequestGrid;
 import it.mwt.hirelance.business.dto.ResponseGrid;
 import it.mwt.hirelance.business.exceptions.BusinessException;
-import it.mwt.hirelance.business.model.MainCategory;
+import it.mwt.hirelance.business.model.Category;
 import it.mwt.hirelance.business.model.Project;
 import it.mwt.hirelance.business.model.Skill;
-import it.mwt.hirelance.business.model.SubCategory;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -32,6 +31,9 @@ public class JPACategoryService implements CategoryServiceRemote {
 	@PersistenceContext(unitName="HL")
 	private EntityManager em;
 	
+	String querySub = "SELECT sc FROM Category sc WHERE sc.parentCategory IS NOT NULL";
+	String queryMain = "SELECT mc FROM Category mc WHERE mc.parentCategory IS NULL";
+	
     /**
      * Default constructor. 
      */
@@ -42,15 +44,8 @@ public class JPACategoryService implements CategoryServiceRemote {
     
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void create(MainCategory mainCategory) throws BusinessException {
+	public void create(Category mainCategory) throws BusinessException {
 		em.persist(mainCategory);		
-	}
-
-	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void create(SubCategory subCategory) throws BusinessException {
-		em.persist(subCategory);
-		
 	}
 
 	@Override
@@ -60,18 +55,18 @@ public class JPACategoryService implements CategoryServiceRemote {
 	}
 
 	@Override
-	public List<MainCategory> findAllMainCategories() throws BusinessException {
-		TypedQuery<MainCategory> q = em.createQuery("SELECT mc FROM MainCategory mc",MainCategory.class);
+	public List<Category> findAllMainCategories() throws BusinessException {
+		TypedQuery<Category> q = em.createQuery(queryMain ,Category.class);
 		return q.getResultList();
 	}
 
 	@Override
-	public ResponseGrid<MainCategory> findAllMainCategoriesPaginated(
+	public ResponseGrid<Category> findAllMainCategoriesPaginated(
 			RequestGrid requestGrid) throws BusinessException {
 		//creo la query di selezione e ricerca
-		String baseSearch = "SELECT mc FROM MainCategory mc";
+		String baseSearch = queryMain;
 		if((!"".equals(requestGrid.getsSearch()))){
-			baseSearch += " WHERE mc.name LIKE '" + requestGrid.getsSearch() + "%' ";	
+			baseSearch += " AND mc.name LIKE '" + requestGrid.getsSearch() + "%' ";	
 		}
 		
 		//creo la query completa
@@ -80,25 +75,25 @@ public class JPACategoryService implements CategoryServiceRemote {
 		//trovo il numero di entità (record) restituiti
 		long iTotalRecords = em.createQuery(search).getResultList().size();
 		  
-		TypedQuery<MainCategory> query = em.createQuery(search, MainCategory.class).setFirstResult(requestGrid.getiDisplayStart()).setMaxResults(requestGrid.getiDisplayLength());
-        List<MainCategory> mainCategories = query.getResultList();
+		TypedQuery<Category> query = em.createQuery(search, Category.class).setFirstResult(requestGrid.getiDisplayStart()).setMaxResults(requestGrid.getiDisplayLength());
+        List<Category> mainCategories = query.getResultList();
 
-		return new ResponseGrid<MainCategory>(requestGrid.getsEcho(), iTotalRecords, iTotalRecords, mainCategories);
+		return new ResponseGrid<Category>(requestGrid.getsEcho(), iTotalRecords, iTotalRecords, mainCategories);
 	}
 	
 	@Override
-	public ResponseGrid<SubCategory> findAllSubCategoriesPaginated(
+	public ResponseGrid<Category> findAllSubCategoriesPaginated(
 			RequestGrid requestGrid, String main_id) throws BusinessException {
 		
-		String baseSearch = "SELECT sc FROM SubCategory sc";
+		String baseSearch = querySub;
 		if(!requestGrid.getsSearch().equals("") && !main_id.equals("")){
-			baseSearch += " WHERE sc.parentCategory.mainID= "+main_id+" AND sc.name LIKE '"+requestGrid.getsSearch()+"%'";
+			baseSearch += " AND sc.parentCategory.catID= "+main_id+" AND sc.name LIKE '"+requestGrid.getsSearch()+"%'";
 		}else{
 			if(!requestGrid.getsSearch().equals("") && main_id.equals("")){
-				baseSearch += " WHERE sc.name LIKE '"+requestGrid.getsSearch()+"%'";
+				baseSearch += " AND sc.name LIKE '"+requestGrid.getsSearch()+"%'";
 			}else{
 				if(requestGrid.getsSearch().equals("") && !main_id.equals("")){
-					baseSearch += " WHERE sc.parentCategory.mainID = "+main_id;
+					baseSearch += " AND sc.parentCategory.catID = "+main_id;
 				}
 			}
 		}
@@ -109,10 +104,10 @@ public class JPACategoryService implements CategoryServiceRemote {
 		//trovo il numero di entità (record) restituiti
 		long iTotalRecords = em.createQuery(search).getResultList().size();
 		
-		TypedQuery<SubCategory> query = em.createQuery(search, SubCategory.class).setFirstResult(requestGrid.getiDisplayStart()).setMaxResults(requestGrid.getiDisplayLength());
-        List<SubCategory> subCategories = query.getResultList();
+		TypedQuery<Category> query = em.createQuery(search, Category.class).setFirstResult(requestGrid.getiDisplayStart()).setMaxResults(requestGrid.getiDisplayLength());
+        List<Category> subCategories = query.getResultList();
         
-        return new ResponseGrid<SubCategory>(requestGrid.getsEcho(), iTotalRecords, iTotalRecords, subCategories);
+        return new ResponseGrid<Category>(requestGrid.getsEcho(), iTotalRecords, iTotalRecords, subCategories);
 	}
 
 	@Override
@@ -148,16 +143,16 @@ public class JPACategoryService implements CategoryServiceRemote {
 	
 	
 	@Override
-	public MainCategory findMainById(int main_id) throws BusinessException {
+	public Category findMainById(int main_id) throws BusinessException {
 
-	       MainCategory mainCategory = em.find(MainCategory.class, main_id);
+	       Category mainCategory = em.find(Category.class, main_id);
 	       return mainCategory;
 		
 	}
 
 	@Override
-	public SubCategory findSubById(int sub_id) throws BusinessException {
-		SubCategory subCategory = em.find(SubCategory.class, sub_id);
+	public Category findSubById(int sub_id) throws BusinessException {
+		Category subCategory = em.find(Category.class, sub_id);
 	    return subCategory;
 	}
 
@@ -169,17 +164,9 @@ public class JPACategoryService implements CategoryServiceRemote {
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void delete(MainCategory mainCategory) throws BusinessException {
+	public void delete(Category category) throws BusinessException {
 		
-		em.remove(em.merge(mainCategory));
-		
-	}
-
-	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-
-	public void delete(SubCategory subCategory) throws BusinessException {
-		em.remove(em.merge(subCategory));
+		em.remove(em.merge(category));
 		
 	}
 
@@ -205,13 +192,13 @@ public class JPACategoryService implements CategoryServiceRemote {
 	@Override
 	public FilterDataResponse<Skill> findAllSubCatAndSkillsByMainID(String mainID, String projectID) {
 		Collection<Skill> preSelectedSkills = new ArrayList<Skill>();
-		String subCatQueryString ="SELECT sc FROM SubCategory sc WHERE sc.parentCategory.mainID= "+mainID;
-		String skillQueryString ="SELECT sk FROM Skill sk WHERE sk.mainCategory.mainID= "+mainID;		
-		TypedQuery<SubCategory> querySubCat= em.createQuery(subCatQueryString,SubCategory.class);
+		String subCatQueryString ="SELECT sc FROM Category sc WHERE sc.parentCategory.catID= "+mainID;
+		String skillQueryString ="SELECT sk FROM Skill sk WHERE sk.mainCategory.catID= "+mainID;		
+		TypedQuery<Category> querySubCat= em.createQuery(subCatQueryString,Category.class);
 		TypedQuery<Skill> querySkill= em.createQuery(skillQueryString,Skill.class);		
-		List<SubCategory> subCategories = querySubCat.getResultList();
+		List<Category> subCategories = querySubCat.getResultList();
 		List<Skill> skills = querySkill.getResultList();
-		if(!projectID.equals("") && projectID!= null){
+		if( projectID!= null && !projectID.equals("")){
 			preSelectedSkills = em.find(Project.class, Integer.parseInt(projectID)).getSkills();
 		}
 		FilterDataResponse<Skill> result = new FilterDataResponse<Skill>(subCategories, skills, preSelectedSkills);

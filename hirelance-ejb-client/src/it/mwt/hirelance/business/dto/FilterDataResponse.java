@@ -1,7 +1,7 @@
 package it.mwt.hirelance.business.dto;
 
 import it.mwt.hirelance.business.model.Skill;
-import it.mwt.hirelance.business.model.SubCategory;
+import it.mwt.hirelance.business.model.Category;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -18,7 +18,7 @@ public class FilterDataResponse<R> implements Serializable {
 	private List<R> items;
 	
 	///////////// PER IL PROJECT FORM: ////////////////
-	private Collection<SubCategory> subCategories;
+	private Collection<Category> subCategories;
 	private Collection<Skill> skills;
 	private Collection<Skill> preSelectedSkills;
 	
@@ -27,7 +27,7 @@ public class FilterDataResponse<R> implements Serializable {
 	}
 	
 	
-	public FilterDataResponse(Collection<SubCategory> subCategories,
+	public FilterDataResponse(Collection<Category> subCategories,
 			Collection<Skill> skills, Collection<Skill> preSelectedSkills) {
 		super();
 		this.subCategories = subCategories;
@@ -57,11 +57,11 @@ public class FilterDataResponse<R> implements Serializable {
 		this.items = items;
 	}
 
-	public Collection<SubCategory> getSubCategories() {
+	public Collection<Category> getSubCategories() {
 		return subCategories;
 	}
 
-	public void setSubCategories(Collection<SubCategory> subCategories) {
+	public void setSubCategories(Collection<Category> subCategories) {
 		this.subCategories = subCategories;
 	}
 

@@ -51,8 +51,8 @@ $("#skills").addClass("current");
 				<form:errors path="description" cssClass="errors_list"/>
 				<form:input path="description" id="description" placeholder="Description"/>
 				<br>
-				<form:select path="mainCategory.mainID" id="mainCategory">
-					<form:options items="${mainCategories}" itemLabel="name" itemValue="mainID"/>
+				<form:select path="mainCategory.catID" id="mainCategory">
+					<form:options items="${mainCategories}" itemLabel="name" itemValue="catID"/>
 				</form:select>
 				<br>
 				<button type="submit" class="standard_button medium">

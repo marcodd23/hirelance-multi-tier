@@ -9,6 +9,7 @@ import javax.persistence.*;
  *
  */
 @Entity
+
 @Table(name = "PORTFOLIO_ITEMS")
 public class PortfolioItem implements Serializable {
 
@@ -57,7 +58,7 @@ public class PortfolioItem implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	@OneToOne(fetch=FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval=true)
+	@OneToOne(fetch=FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval=true)
 	@JoinColumn(name="IMAGE_ID", nullable = true)
 	public UploadedFile getPortfolioFile() {
 		return portfolioFile;

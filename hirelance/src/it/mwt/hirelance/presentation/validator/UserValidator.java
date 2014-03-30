@@ -37,7 +37,9 @@ public class UserValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "errors.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "errors.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "errors.required");
-		if(user.getPassword().length()<8){
+
+		
+/*		if(user.getPassword().length()<8){
 			errors.rejectValue("password", "errrors.min_password");
 		}
         if(!confirmPassword.equals(user.getPassword())){
@@ -57,7 +59,7 @@ public class UserValidator implements Validator {
         
         if(existEmail){
         	errors.rejectValue("email", "errors.email.already.exist");
-        }
+        }*/
       
 	}
 

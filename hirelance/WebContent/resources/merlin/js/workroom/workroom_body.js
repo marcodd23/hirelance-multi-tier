@@ -175,6 +175,12 @@ function workResume(){
 				imagePath=contextPath+"/files/image/freelancer/"+proposal[0].aspirantFreelance.image.fileID;
 			}
 			
+            var complete ="";
+            
+            if(isOwner=='true'){
+            	complete+='<a href="javascript:openForm(\'client\',\''+proposal[0].refProject.projectID+'\');">COMPLETE</a>';
+            }
+            
 			html+= '<div class="project-card-workroom">'+
 			          '<div id="project-Details">'+
 		                '<div class="five columns">'+
@@ -199,7 +205,7 @@ function workResume(){
 			        '<div class="title" style="margin-bottom: 0px;">'+
 					     '<h4> <span class="bold" >Status:</span></h4>'+	
 			        '</div>'+
-				      '<h6 class="grey">' + proposal[0].status+ '</h6>Closed on Oct 12, 2013 - 11:19 AM ET<br><br></div></div></div>'+ 
+				      '<h6 class="grey">' + proposal[0].status+ '</h6>'+ complete +'<br><br></div></div></div>'+ 
 			          '<div class="project-card-middle">'+
 		                 '<div style="margin-left: 3px;  float: inherit; margin-top: 7px;">'+
 		                   '<div class="project-card-title" style=" float: inherit;">'+

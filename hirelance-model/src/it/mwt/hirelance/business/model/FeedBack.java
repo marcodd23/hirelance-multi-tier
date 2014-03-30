@@ -1,6 +1,7 @@
 package it.mwt.hirelance.business.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,13 +17,16 @@ import static javax.persistence.CascadeType.MERGE;
 @Table(name = "FEEDBACK")
 public class FeedBack implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4272613481933551862L;
 	private int feedBackID;
 	private User beneficiary;
 	private int grade;
 	private String remark;
 	private String type; // freelancer / client
 	private Proposal jobEvaluated;
-	private static final long serialVersionUID = 1L;
 
 	public FeedBack() {
 		super();
@@ -50,7 +54,7 @@ public class FeedBack implements Serializable {
 		this.feedBackID = feedBackID;
 	}
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "USER_FK", referencedColumnName = "USER_ID")
 	public User getBeneficiary() {
 		return beneficiary;
@@ -84,7 +88,7 @@ public class FeedBack implements Serializable {
 		this.type = type;
 	}
 
-	@ManyToOne(cascade = { PERSIST, MERGE })
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "PROPOSAL_FK", referencedColumnName = "PROPOSAL_ID")
 	@JsonIgnore
 	public Proposal getJobEvaluated() {

@@ -12,7 +12,7 @@
 					</div><!-- end .title -->
 					<ul id="categoryList">
 					<c:forEach var="mainCategory" items="${categories}">
-					<li> <a id="${mainCategory.mainID}" href="javascript:addCategory('${mainCategory.mainID}');">${mainCategory.name}</a> </li>
+					<li> <a id="${mainCategory.catID}" href="javascript:addCategory('${mainCategory.catID}');">${mainCategory.name}</a> </li>
 					</c:forEach>	
 					</ul>	
 				</article><!-- end .latest_posts -->

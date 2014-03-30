@@ -60,8 +60,8 @@
 			<form:hidden path="freelanceID"/>
 			<form:errors path="freelanceName" cssClass="errors-list"/>
 			<form:input path="freelanceName" id="freelanceName" placeholder="${name_message}"/>		
-			<form:select path="category.mainID" id="category">
-    			<form:options items="${categories}" itemLabel="name" itemValue="mainID"/>
+			<form:select path="category.catID" id="category">
+    			<form:options items="${categories}" itemLabel="name" itemValue="catID"/>
     		</form:select>
 			<br>
 			<c:if test="${!empty imageErrors}">

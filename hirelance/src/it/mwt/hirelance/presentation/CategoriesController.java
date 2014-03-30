@@ -5,9 +5,8 @@ import java.util.List;
 import it.mwt.hirelance.business.dto.RequestGrid;
 import it.mwt.hirelance.business.dto.ResponseGrid;
 import it.mwt.hirelance.business.exceptions.BusinessException;
-import it.mwt.hirelance.business.model.MainCategory;
+import it.mwt.hirelance.business.model.Category;
 import it.mwt.hirelance.business.model.Skill;
-import it.mwt.hirelance.business.model.SubCategory;
 import it.mwt.hirelance.business.CategoryServiceRemote;
 import it.mwt.hirelance.common.FactoryEjb;
 import it.mwt.hirelance.presentation.validator.MainValidator;
@@ -43,11 +42,11 @@ public class CategoriesController {
 	
 	@RequestMapping(value= "/main/create", method=RequestMethod.GET)
 	public String mainCreateStart(Model model){
-		model.addAttribute("mainCategory", new MainCategory());
+		model.addAttribute("mainCategory", new Category());
 		return "main.createform";
 	}
 	@RequestMapping(value="/main/create", method=RequestMethod.POST)
-	public String mainCreate(@ModelAttribute MainCategory mainCategory, BindingResult bindingResult) throws BusinessException{
+	public String mainCreate(@ModelAttribute Category mainCategory, BindingResult bindingResult) throws BusinessException{
 		mainValidator.validate(mainCategory,bindingResult);
 		if(bindingResult.hasErrors())
 			return "main.createform";
@@ -61,20 +60,20 @@ public class CategoriesController {
 	}
 	@RequestMapping("/main/findAllMainCategoriesPaginated")
 	@ResponseBody
-	public ResponseGrid<MainCategory> findAllMainCategoriesPaginated(@ModelAttribute RequestGrid requestGrid) throws BusinessException{
-		ResponseGrid<MainCategory> result = service.findAllMainCategoriesPaginated(requestGrid);
+	public ResponseGrid<Category> findAllMainCategoriesPaginated(@ModelAttribute RequestGrid requestGrid) throws BusinessException{
+		ResponseGrid<Category> result = service.findAllMainCategoriesPaginated(requestGrid);
 		return result;
 	}
 	
 	@RequestMapping(value = "/main/delete", method = RequestMethod.GET)
 	public String mainDeleteStart(@RequestParam("id") int main_id, Model model) throws BusinessException {
-		MainCategory mainCategory = service.findMainById(main_id);
+		Category mainCategory = service.findMainById(main_id);
 		model.addAttribute("mainCategory", mainCategory);
 		return "main.deleteform";
 	}
     
 	@RequestMapping(value = "/main/delete", method = RequestMethod.POST)
-	public String mainDelete(@ModelAttribute MainCategory mainCategory) throws BusinessException {
+	public String mainDelete(@ModelAttribute Category mainCategory) throws BusinessException {
 		
 	    service.delete(mainCategory);
 		return "redirect:/categories/main/views";
@@ -82,11 +81,11 @@ public class CategoriesController {
 	
 	@RequestMapping(value= "/sub/create", method=RequestMethod.GET)
 	public String subCreateStart(Model model){
-		model.addAttribute("subCategory", new SubCategory());
+		model.addAttribute("subCategory", new Category());
 		return "sub.createform";
 	}
 	@RequestMapping(value="/sub/create", method=RequestMethod.POST)
-	public String subCreate(@ModelAttribute SubCategory subCategory, BindingResult bindingResult) throws BusinessException{
+	public String subCreate(@ModelAttribute Category subCategory, BindingResult bindingResult) throws BusinessException{
 		subValidator.validate(subCategory, bindingResult);
 		if(bindingResult.hasErrors())
 			return "sub.createform";
@@ -100,20 +99,20 @@ public class CategoriesController {
 	}
 	@RequestMapping("/sub/findAllSubCategoriesPaginated")
 	@ResponseBody
-	public ResponseGrid<SubCategory> findAllSubCategoriesPaginated(@ModelAttribute RequestGrid requestGrid,@RequestParam(value="main_id",required=false) String main_id) throws BusinessException{
-		ResponseGrid<SubCategory> result = service.findAllSubCategoriesPaginated(requestGrid,main_id);
+	public ResponseGrid<Category> findAllSubCategoriesPaginated(@ModelAttribute RequestGrid requestGrid,@RequestParam(value="main_id",required=false) String main_id) throws BusinessException{
+		ResponseGrid<Category> result = service.findAllSubCategoriesPaginated(requestGrid,main_id);
 		return result;
 	}
 	
 	@RequestMapping(value = "/sub/delete", method = RequestMethod.GET)
 	public String subDeleteStart(@RequestParam("id") int sub_id, Model model) throws BusinessException {
-		SubCategory subCategory = service.findSubById(sub_id);
+		Category subCategory = service.findSubById(sub_id);
 		model.addAttribute("subCategory", subCategory);
 		return "sub.deleteform";
 	}
     
 	@RequestMapping(value = "/sub/delete", method = RequestMethod.POST)
-	public String subDelete(@ModelAttribute SubCategory subCategory) throws BusinessException {
+	public String subDelete(@ModelAttribute Category subCategory) throws BusinessException {
 		
 	    service.delete(subCategory);
 		return "redirect:/categories/sub/views";
@@ -154,7 +153,7 @@ public class CategoriesController {
 	
 	@ModelAttribute
 	public void findAllMainCategories(Model model) throws BusinessException{
-		List<MainCategory> mainCategories = service.findAllMainCategories();
+		List<Category> mainCategories = service.findAllMainCategories();
 		model.addAttribute("mainCategories", mainCategories);
 		
 	}

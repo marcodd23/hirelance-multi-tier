@@ -39,7 +39,7 @@ public class ProjectValidator implements Validator {
         if(projectMainCategory==0){
         	errorMsg.put("mainCategorySelectError", "errors.required");
         }else{
-            if(project.getProjectSubCategory().getSubID()==0){
+            if(project.getProjectSubCategory().getCatID()==0){
             	errors.rejectValue("projectSubCategory.subID", "errors.required");
             }
         }   

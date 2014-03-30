@@ -159,7 +159,8 @@ public class JPAProfileService implements ProfileServiceRemote {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void removeProjectToWatchList(FreelanceProfile fp, Project project) throws BusinessException {
 		for (Iterator<Project> i=fp.getProjectWatchList().iterator();i.hasNext();) {
-			if(i.next().getProjectID()==project.getProjectID())i.remove();
+			if(i.next().getProjectID()==project.getProjectID())
+				i.remove();
 		}
 		em.merge(fp);
 	}

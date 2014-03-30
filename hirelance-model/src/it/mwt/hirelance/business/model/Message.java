@@ -12,6 +12,7 @@ import static javax.persistence.TemporalType.TIMESTAMP;
  *
  */
 @Entity
+
 @Table(name = "MESSAGES")
 public class Message implements Serializable {
 
@@ -92,18 +93,6 @@ public class Message implements Serializable {
 	public void setMessageDate(Date messageDate) {
 		this.messageDate = messageDate;
 	}
-
-
-/*	@ManyToOne
-	@JoinColumn(name = "WORKROOM_FK", referencedColumnName = "WORKROOM_ID")
-	public WorkRoom getMessageWorkroom() {
-		return messageWorkroom;
-	}
-
-	public void setMessageWorkroom(WorkRoom messageWorkroom) {
-		this.messageWorkroom = messageWorkroom;
-	}*/
-
 
 	@ManyToOne
 	@JoinColumn(name = "PROPOSAL_FK", referencedColumnName = "PROPOSAL_ID")

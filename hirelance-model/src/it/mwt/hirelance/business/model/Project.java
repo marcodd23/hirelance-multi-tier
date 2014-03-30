@@ -13,23 +13,21 @@ import javax.persistence.*;
  *
  */
 @Entity
+
 @Table(name = "PROJECTS")
 public class Project implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6035069195526025166L;
+	private static final long serialVersionUID = -4385777002696131580L;
 	private int projectID;
 	private String title;
 	private String description;
 	private ProjectStatus status;
-	private SubCategory projectSubCategory;
+	private Category projectSubCategory;
 	private ClientProfile clientOwner;
-	private WorkRoom workRoom;
-	//private Collection<Proposal> candidates = new HashSet<Proposal>();
 	private Collection<Skill> skills = new HashSet<Skill>();
-	//private int maxDuration;
 	private BigDecimal budgetMIN;
 	private BigDecimal budgetMAX;
 	private Date postedDate;
@@ -39,15 +37,15 @@ public class Project implements Serializable {
 	private String timeLeft;
 	private boolean valuated;
 	
+	
 
 	public Project() {
 		super();
 	}
 
 	public Project(int projectID, String title, String description,
-			ProjectStatus status, SubCategory projectSubCategory,
-			ClientProfile clientOwner, WorkRoom workRoom,
-			Collection<Skill> skills, BigDecimal budgetMIN,
+			ProjectStatus status, Category projectSubCategory,
+			ClientProfile clientOwner,Collection<Skill> skills, BigDecimal budgetMIN,
 			BigDecimal budgetMAX, Date postedDate, Date expiryDate,
 			String country, int totalProposal) {
 		super();
@@ -57,7 +55,6 @@ public class Project implements Serializable {
 		this.status = status;
 		this.projectSubCategory = projectSubCategory;
 		this.clientOwner = clientOwner;
-		this.workRoom = workRoom;
 		this.skills = skills;
 		this.budgetMIN = budgetMIN;
 		this.budgetMAX = budgetMAX;
@@ -105,12 +102,12 @@ public class Project implements Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "SUBCATEGORY_FK", referencedColumnName = "SUBCATEGORY_ID")
-	public SubCategory getProjectSubCategory() {
+	@JoinColumn(name = "SUBCATEGORY_FK", referencedColumnName = "CATEGORY_ID")
+	public Category getProjectSubCategory() {
 		return projectSubCategory;
 	}
 
-	public void setProjectSubCategory(SubCategory projectSubCategory) {
+	public void setProjectSubCategory(Category projectSubCategory) {
 		this.projectSubCategory = projectSubCategory;
 	}
 
@@ -125,15 +122,6 @@ public class Project implements Serializable {
 /*		if(!clientOwner.getProjects().contains(this)){
 			clientOwner.getProjects().add(this);
 		}*/
-	}
-
-	@OneToOne(mappedBy = "projectAssigned")
-	public WorkRoom getWorkRoom() {
-		return workRoom;
-	}
-
-	public void setWorkRoom(WorkRoom workRoom) {
-		this.workRoom = workRoom;
 	}
 
 	public BigDecimal getBudgetMIN() {
@@ -178,7 +166,7 @@ public class Project implements Serializable {
 		this.country = country;
 	}
 
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "Project_Skill", joinColumns = @JoinColumn(name = "PROJECT_FK", referencedColumnName = "PROJECT_ID"), inverseJoinColumns = @JoinColumn(name = "SKILL_FK", referencedColumnName = "SKILL_ID"))
 	public Collection<Skill> getSkills() {
 		return skills;

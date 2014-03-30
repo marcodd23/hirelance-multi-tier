@@ -44,11 +44,11 @@ $("#sub").addClass("current");
 	<div class="container">
 		<div class="sixteen columns add-top add-bottom">
 			<form:form modelAttribute="subCategory" action="${pageContext.request.contextPath}${requestScope.action}" method="POST" cssClass="form-user">
-				<form:hidden path="subID"/>
+				<form:hidden path="catID"/>
 				<form:errors path="name" cssClass="errors_list"/>
 				<form:input path="name" id="name" placeholder="Name"/>
 				<br>
-				<form:select path="parentCategory.mainID" id="mainCategory">
+				<form:select path="parentCategory.catID" id="mainCategory">
     				<form:options items="${mainCategories}" itemLabel="name" itemValue="mainID"/>
     			</form:select>
 				<br>

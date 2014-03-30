@@ -18,10 +18,10 @@ $(document).ready(function() {
 	            
 	            var len1 = data.subCategories.length;
 	            for(var i=0; i<len1; i++){
-	                if(data.subCategories[i].subID == subCategorySelectedID){
-	                	htmlSubCat += '<option selected="selected" value="' + data.subCategories[i].subID + '">' + data.subCategories[i].name + '</option>'; 
+	                if(data.subCategories[i].catID == subCategorySelectedID){
+	                	htmlSubCat += '<option selected="selected" value="' + data.subCategories[i].catID + '">' + data.subCategories[i].name + '</option>'; 
 	                }else{
-		            	htmlSubCat += '<option value="' + data.subCategories[i].subID + '">' + data.subCategories[i].name + '</option>'; 	
+		            	htmlSubCat += '<option value="' + data.subCategories[i].catID + '">' + data.subCategories[i].name + '</option>'; 	
 	                }
 	             }
 	            var len2 = data.skills.length;
@@ -79,8 +79,8 @@ $(document).ready(function() {
 			            var htmlSkills = '';
 			            var len1 = data.subCategories.length;
 			            for(var i=0; i<len1; i++){
-			                 /* html += '<option value="' + data[i].subID + '">' + data[i].name + '</option>'; */
-			            	htmlSubCat += '<option value="' + data.subCategories[i].subID + '">' + data.subCategories[i].name + '</option>'; 
+			                 /* html += '<option value="' + data[i].catID + '">' + data[i].name + '</option>'; */
+			            	htmlSubCat += '<option value="' + data.subCategories[i].catID + '">' + data.subCategories[i].name + '</option>'; 
 			             }
 			            var len2 = data.skills.length;
 			            for(var i=0; i<len2; i++){

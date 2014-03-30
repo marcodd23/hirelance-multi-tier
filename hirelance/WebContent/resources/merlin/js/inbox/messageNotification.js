@@ -46,7 +46,7 @@ function findNumberOfNewMessages(){
 		  
 		  complete: function() {
 		      // Schedule the next request when the current one's complete
-		      setTimeout(findNumberOfNewMessages, 10000);
+		      setTimeout(findNumberOfNewMessages, 5000);
 		    }
 	});	
 }

@@ -109,7 +109,7 @@ public class ClientProfile implements Serializable {
 		this.user = user;
 	}
 
-	@OneToOne(fetch=FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval=true)
+	@OneToOne(fetch=FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval=true)
 	@JoinColumn(name="IMAGE_ID", nullable = true)
 	public UploadedFile getImage() {
 		return image;
@@ -119,8 +119,7 @@ public class ClientProfile implements Serializable {
 		this.image = image;
 	}
 
-	@OneToMany(mappedBy = "clientOwner",orphanRemoval=true)
-	//@OneToMany(mappedBy = "clientOwner", orphanRemoval=true)
+	@OneToMany(fetch=FetchType.EAGER, cascade = {CascadeType.REMOVE}, mappedBy = "clientOwner",orphanRemoval=true)
 	@JsonIgnore
 	public Collection<Project> getProjects() {
 		return projects;
@@ -129,9 +128,8 @@ public class ClientProfile implements Serializable {
 	public void setProjects(Collection<Project> projects) {
 		this.projects = projects;
 	}
-    
-	@OneToMany(fetch = EAGER)
-	@JoinTable(name = "Preferred_Freelance", joinColumns = @JoinColumn(name = "CLIENT_FK", referencedColumnName = "CLIENT_ID"), inverseJoinColumns = @JoinColumn(name = "FREELANCE_FK", referencedColumnName = "FREELANCE_ID"))
+	
+    @ManyToMany(fetch=FetchType.EAGER, mappedBy = "preferredClients")
 	public Collection<FreelanceProfile> getPreferredFreelances() {
 		return preferredFreelances;
 	}

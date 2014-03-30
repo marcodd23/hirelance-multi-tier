@@ -5,21 +5,36 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 
+
 <c:set var="isFreelance" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.user.freelanceProfile ne null}"></c:set>
 <c:set var="userLogged" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.user}"></c:set>
 <%-- <c:set var="isOwner" value="${(not empty userLogged.clientProfile) and (project.clientOwner.clientID == userLogged.clientProfile.clientID)}"></c:set> --%>
-<c:set var="isOwner" value="${project.clientOwner.clientID == userLogged.clientProfile.clientID}"></c:set>
- 
+<c:set var="isOwner" value="${project.clientOwner.clientID eq userLogged.clientProfile.clientID}"></c:set>
+x<c:out value="${isOwner}"></c:out> 
+y<c:out value="${project.clientOwner.clientID}"></c:out> 
+z<c:out value="${userLogged.clientProfile.clientID}"></c:out> 
 <script type="text/javascript" >
 var contextPath='${pageContext.request.contextPath}';
 var messageAction = '${pageContext.request.contextPath}${messageActionUri}';
 var userLoggedID = '${userLogged}';
 var projectID = '${projectID}';
 var proposalID = '${proposalID}';
+var isOwner = '${isOwner}';
 </script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/merlin/js/workroom/workroom_body.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/merlin/js/formatterDate.js" ></script>
+
+
+
+<div id="dialog" title="<spring:message code="project.rate" />">
+  <p>
+    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+  <spring:message code="project.rate_done" />
+  </p>
+</div>
+
+
 
 <form:form modelAttribute="filterDataRequest" id="filterDataForm">
 <form:hidden path="itemSort" id="itemSort" value=""/>
@@ -177,3 +192,22 @@ var proposalID = '${proposalID}';
 
 </section>
 <!-- end #main_content -->	
+
+
+<input type="hidden" value="" id="projectsNumber"/>
+<script src="${pageContext.request.contextPath}/resources/merlin/js/projectCompleteInWR.js"></script>
+  
+	<div id="dialog-form" title="<spring:message code="project.rate" />">
+		<span class="validateTips">&nbsp;</span>
+		 
+		<form:form modelAttribute="feedback" id="feedbackForm">
+			<fieldset>
+				<div class="basic" data-average="1" data-id="3"></div>
+				<form:hidden path="grade" id="rate"/>
+				<form:hidden path="type" id="type"/>
+				<br><label for="comment"><spring:message code="project.comment"/> (max 60 <spring:message code="common.chars"/>)</label><br>
+				<form:input path="remark" id="comment" cssClass="text ui-widget-content ui-corner-all"/>
+				<form:hidden path="jobEvaluated.refProject.projectID" id="projectIDevaluated"/>
+			</fieldset>
+		</form:form>
+	</div>

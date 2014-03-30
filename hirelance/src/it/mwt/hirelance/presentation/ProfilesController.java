@@ -12,7 +12,7 @@ import it.mwt.hirelance.business.model.FeedBack;
 import it.mwt.hirelance.business.model.FreelanceProfile;
 import it.mwt.hirelance.business.model.Proposal;
 import it.mwt.hirelance.business.model.UploadedFile;
-import it.mwt.hirelance.business.model.MainCategory;
+import it.mwt.hirelance.business.model.Category;
 import it.mwt.hirelance.business.model.User;
 import it.mwt.hirelance.business.CategoryServiceRemote;
 import it.mwt.hirelance.business.ProfileServiceRemote;
@@ -343,7 +343,7 @@ public class ProfilesController {
 	
 	@ModelAttribute
 	public void findAllMainCategories(Model model) throws BusinessException{
-		List<MainCategory> mainCategories = cService.findAllMainCategories();
+		List<Category> mainCategories = cService.findAllMainCategories();
 		model.addAttribute("categories", mainCategories);
 		
 	}
