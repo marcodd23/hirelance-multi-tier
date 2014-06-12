@@ -183,7 +183,7 @@ function workResume(){
             
 			html+= '<div class="project-card-workroom">'+
 			          '<div id="project-Details">'+
-		                '<div class="five columns">'+
+		                '<div class="six columns">'+
 	                  '<ul class="projectDetail" id="jobDetailLeft">'+
 	                    '<li class="icon-calendar" style="padding: 0px;" title="Job Started on: ' + jobStartDate + '>'+
 	                       '<span style="display: inline-block;">Job Started on: ' + jobStartDate + '</span>'+

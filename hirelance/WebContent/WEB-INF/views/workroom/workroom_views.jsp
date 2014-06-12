@@ -10,9 +10,9 @@
 <c:set var="userLogged" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.user}"></c:set>
 <%-- <c:set var="isOwner" value="${(not empty userLogged.clientProfile) and (project.clientOwner.clientID == userLogged.clientProfile.clientID)}"></c:set> --%>
 <c:set var="isOwner" value="${project.clientOwner.clientID eq userLogged.clientProfile.clientID}"></c:set>
-x<c:out value="${isOwner}"></c:out> 
-y<c:out value="${project.clientOwner.clientID}"></c:out> 
-z<c:out value="${userLogged.clientProfile.clientID}"></c:out> 
+<%-- <c:out value="${isOwner}"></c:out>  --%>
+<%-- <c:out value="${project.clientOwner.clientID}"></c:out>  --%>
+<%-- <c:out value="${userLogged.clientProfile.clientID}"></c:out>  --%>
 <script type="text/javascript" >
 var contextPath='${pageContext.request.contextPath}';
 var messageAction = '${pageContext.request.contextPath}${messageActionUri}';
